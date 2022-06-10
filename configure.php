@@ -165,7 +165,7 @@ $useUpdateChangelogWorkflow = confirm('Use automatic changelog updater workflow?
 writeln('------');
 writeln("Author     : {$authorName} ({$authorEmail})");
 writeln("Package    : {$packageSlug} <{$description}>");
-writeln("Namespace  : Codepotato\\{$className}");
+writeln("Namespace  : Author\\{$className}");
 writeln("Class name : {$className}");
 writeln("Base URL : {$baseUrl}");
 writeln('---');
