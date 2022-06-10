@@ -6,3 +6,5 @@ This template repository has been created to help you write SDKs easily.
 2. Clone the repository locally
 3. Run the "php configure.php" locally to run through the setup
 4. Start building!
+
+> To read more about building SDKs with Saloon, see here: https://docs.saloon.dev/the-basics/sdk-style-connectors
