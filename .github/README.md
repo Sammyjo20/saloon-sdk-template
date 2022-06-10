@@ -1,4 +1,4 @@
-# Codepotato SDK Template
+# Saloon SDK Template
 This template repository has been created to help you write SDKs easily. 
 
 ## Getting Started
