@@ -1,6 +1,6 @@
 <?php
 
-namespace Codepotato\SDK\Requests;
+namespace Author\SDK\Requests;
 
 use Sammyjo20\Saloon\Http\RequestCollection;
 

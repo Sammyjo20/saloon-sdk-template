@@ -1,9 +1,9 @@
 <?php
 
-namespace Codepotato\SDK\Responses;
+namespace Author\SDK\Responses;
 
 use Sammyjo20\Saloon\Http\SaloonResponse;
-use Codepotato\SDK\Exceptions\SDKRequestException;
+use Author\SDK\Exceptions\SDKRequestException;
 
 class SDKResponse extends SaloonResponse
 {

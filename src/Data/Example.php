@@ -1,6 +1,6 @@
 <?php
 
-namespace Codepotato\SDK\Data;
+namespace Author\SDK\Data;
 
 use Spatie\DataTransferObject\DataTransferObject;
 

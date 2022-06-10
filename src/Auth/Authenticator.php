@@ -1,6 +1,6 @@
 <?php
 
-namespace Codepotato\SDK\Auth;
+namespace Author\SDK\Auth;
 
 use Sammyjo20\Saloon\Http\SaloonRequest;
 use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;

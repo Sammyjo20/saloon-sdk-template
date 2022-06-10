@@ -1,11 +1,11 @@
 <?php
 
-namespace Codepotato\SDK;
+namespace Author\SDK;
 
-use Codepotato\SDK\Responses\SDKResponse;
+use Author\SDK\Responses\SDKResponse;
 use Sammyjo20\Saloon\Http\SaloonConnector;
 use Sammyjo20\Saloon\Traits\Plugins\AcceptsJson;
-use Codepotato\SDK\Requests\ExampleRequestCollection;
+use Author\SDK\Requests\ExampleRequestCollection;
 
 /**
  * @method ExampleRequestCollection example

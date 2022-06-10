@@ -1,6 +1,6 @@
 <?php
 
-namespace Codepotato\SDK\Exceptions;
+namespace Author\SDK\Exceptions;
 
 use Exception;
 

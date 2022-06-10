@@ -1,6 +1,6 @@
 <?php
 
-namespace Codepotato\SDK\Exceptions;
+namespace Author\SDK\Exceptions;
 
 use Sammyjo20\Saloon\Http\SaloonResponse;
 use Sammyjo20\Saloon\Exceptions\SaloonRequestException;

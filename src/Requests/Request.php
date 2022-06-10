@@ -1,8 +1,8 @@
 <?php
 
-namespace Codepotato\SDK\Requests;
+namespace Author\SDK\Requests;
 
-use Codepotato\SDK\SDK;
+use Author\SDK\SDK;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 
 class Request extends SaloonRequest

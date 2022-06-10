@@ -1,12 +1,12 @@
 {
-    "name": "codepotatoltd/package_name",
+    "name": "author_name/package_name",
     "description": ":package_description",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Codepotato\\SDK\\": "src/",
-            "Codepotato\\SDK\\Tests\\": "tests/"
+            "Author\\SDK\\": "src/",
+            "Author\\SDK\\Tests\\": "tests/"
         }
     },
     "authors": [

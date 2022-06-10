@@ -1,8 +1,8 @@
 <?php
 
-namespace Codepotato\SDK\Requests\Example;
+namespace Author\SDK\Requests\Example;
 
-use Codepotato\SDK\Requests\Request;
+use Author\SDK\Requests\Request;
 use Sammyjo20\Saloon\Constants\Saloon;
 
 class ExampleRequest extends Request
