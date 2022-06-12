@@ -1,8 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-function ask(string $question, string $default = ''): string
-{
+function ask(string $question, string $default = ''): string {
     $answer = readline($question . ($default ? " ({$default})" : null) . ': ');
 
     if (! $answer) {
@@ -12,8 +11,7 @@ function ask(string $question, string $default = ''): string
     return $answer;
 }
 
-function confirm(string $question, bool $default = false): bool
-{
+function confirm(string $question, bool $default = false): bool {
     $answer = ask($question . ' (' . ($default ? 'Y/n' : 'y/N') . ')');
 
     if (! $answer) {
@@ -23,18 +21,15 @@ function confirm(string $question, bool $default = false): bool
     return strtolower($answer) === 'y';
 }
 
-function writeln(string $line): void
-{
+function writeln(string $line): void {
     echo $line . PHP_EOL;
 }
 
-function run(string $command): string
-{
+function run(string $command): string {
     return trim((string) shell_exec($command));
 }
 
-function str_after(string $subject, string $search): string
-{
+function str_after(string $subject, string $search): string {
     $pos = strrpos($subject, $search);
 
     if ($pos === false) {
@@ -44,13 +39,11 @@ function str_after(string $subject, string $search): string
     return substr($subject, $pos + strlen($search));
 }
 
-function slugify(string $subject): string
-{
+function slugify(string $subject): string {
     return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $subject), '-'));
 }
 
-function title_case(string $subject): string
-{
+function title_case(string $subject): string {
     return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $subject)));
 }
 
@@ -59,8 +52,7 @@ function title_snake(string $subject, string $replace = '_'): string
     return str_replace(['-', '_'], $replace, $subject);
 }
 
-function replace_in_file(string $file, array $replacements): void
-{
+function replace_in_file(string $file, array $replacements): void {
     $contents = file_get_contents($file);
 
     file_put_contents(
@@ -73,8 +65,7 @@ function replace_in_file(string $file, array $replacements): void
     );
 }
 
-function remove_prefix(string $prefix, string $content): string
-{
+function remove_prefix(string $prefix, string $content): string {
     if (str_starts_with($content, $prefix)) {
         return substr($content, strlen($prefix));
     }
@@ -82,11 +73,10 @@ function remove_prefix(string $prefix, string $content): string
     return $content;
 }
 
-function remove_composer_deps(array $names)
-{
+function remove_composer_deps(array $names) {
     $data = json_decode(file_get_contents(__DIR__.'/composer.json'), true);
 
-    foreach ($data['require-dev'] as $name => $version) {
+    foreach($data['require-dev'] as $name => $version) {
         if (in_array($name, $names, true)) {
             unset($data['require-dev'][$name]);
         }
@@ -95,11 +85,10 @@ function remove_composer_deps(array $names)
     file_put_contents(__DIR__.'/composer.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 }
 
-function remove_composer_script($scriptName)
-{
+function remove_composer_script($scriptName) {
     $data = json_decode(file_get_contents(__DIR__.'/composer.json'), true);
 
-    foreach ($data['scripts'] as $name => $script) {
+    foreach($data['scripts'] as $name => $script) {
         if ($scriptName === $name) {
             unset($data['scripts'][$name]);
             break;
@@ -109,8 +98,7 @@ function remove_composer_script($scriptName)
     file_put_contents(__DIR__.'/composer.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 }
 
-function remove_readme_paragraphs(string $file): void
-{
+function remove_readme_paragraphs(string $file): void {
     $contents = file_get_contents($file);
 
     file_put_contents(
@@ -119,26 +107,22 @@ function remove_readme_paragraphs(string $file): void
     );
 }
 
-function safeUnlink(string $filename)
-{
+function safeUnlink(string $filename) {
     if (file_exists($filename) && is_file($filename)) {
         unlink($filename);
     }
 }
 
-function determineSeparator(string $path): string
-{
+function determineSeparator(string $path): string {
     return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
 
-function replaceForWindows(): array
-{
+function replaceForWindows(): array {
     return preg_split('/\\r\\n|\\r|\\n/', run('dir /S /B * | findstr /v /i .git\ | findstr /v /i vendor | findstr /v /i '.basename(__FILE__).' | findstr /r /i /M /F:/ ":author :vendor :package VendorName skeleton migration_table_name vendor_name vendor_slug author@domain.com"'));
 }
 
-function replaceForAllOtherOSes(): array
-{
-    return explode(PHP_EOL, run('grep -E -r -l -i ":author|:vendor|:package|SDK|sdk|vendor_name|vendor_slug|author@domain.com" --exclude-dir=vendor ./* ./.github/* | grep -v ' . basename(__FILE__)));
+function replaceForAllOtherOSes(): array {
+    return explode(PHP_EOL, run('grep -E -r -l -i ":author|:vendor|:package|VendorName|skeleton|migration_table_name|vendor_name|vendor_slug|author@domain.com" --exclude-dir=vendor ./* ./.github/* | grep -v ' . basename(__FILE__)));
 }
 
 $gitName = run('git config user.name');
@@ -147,30 +131,41 @@ $authorName = ask('Author name', $gitName);
 $gitEmail = run('git config user.email');
 $authorEmail = ask('Author email', $gitEmail);
 
+$usernameGuess = explode(':', run('git config remote.origin.url'))[1];
+$usernameGuess = dirname($usernameGuess);
+$usernameGuess = basename($usernameGuess);
+$authorUsername = ask('Author username', $usernameGuess);
+
+$vendorName = ask('Vendor name', $authorUsername);
+$vendorSlug = slugify($vendorName);
+$vendorNamespace = ucwords($vendorName);
+$vendorNamespace = ask('Vendor namespace', $vendorNamespace);
+
 $currentDirectory = getcwd();
 $folderName = basename($currentDirectory);
 
 $packageName = ask('Package name', $folderName);
 $packageSlug = slugify($packageName);
+$packageSlugWithoutPrefix = remove_prefix('laravel-', $packageSlug);
 
 $className = title_case($packageName);
 $className = ask('Class name', $className);
 $variableName = lcfirst($className);
 $description = ask('Package description', "This is my package {$packageSlug}");
 
-$baseUrl = ask('API base url');
-
+$usePhpCsFixer = confirm('Enable PhpCsFixer?', true);
 $useUpdateChangelogWorkflow = confirm('Use automatic changelog updater workflow?', true);
 
 writeln('------');
-writeln("Author     : {$authorName} ({$authorEmail})");
+writeln("Author     : {$authorName} ({$authorUsername}, {$authorEmail})");
+writeln("Vendor     : {$vendorName} ({$vendorSlug})");
 writeln("Package    : {$packageSlug} <{$description}>");
-writeln("Namespace  : Author\\{$className}");
+writeln("Namespace  : {$vendorNamespace}\\{$className}");
 writeln("Class name : {$className}");
-writeln("Base URL : {$baseUrl}");
-writeln('---');
-writeln('Packages & Utilities');
-writeln('Use Auto-Changelog   : ' . ($useUpdateChangelogWorkflow ? 'yes' : 'no'));
+writeln("---");
+writeln("Packages & Utilities");
+writeln("Use PhpCsFixer       : " . ($usePhpCsFixer ? 'yes' : 'no'));
+writeln("Use Auto-Changelog   : " . ($useUpdateChangelogWorkflow ? 'yes' : 'no'));
 writeln('------');
 
 writeln('This script will replace the above values in all relevant files in the project directory.');
@@ -183,15 +178,20 @@ $files = (str_starts_with(strtoupper(PHP_OS), 'WIN') ? replaceForWindows() : rep
 
 foreach ($files as $file) {
     replace_in_file($file, [
-        'sammyjo20/saloon-sdk-template' => $authorName . '/' . $packageSlug,
         ':author_name' => $authorName,
-        'author_email@example.com' => $authorEmail,
-        'SDK' => $className,
-        'sdk' => $packageSlug,
+        ':author_username' => $authorUsername,
+        'author@domain.com' => $authorEmail,
+        ':vendor_name' => $vendorName,
+        ':vendor_slug' => $vendorSlug,
+        'VendorName' => $vendorNamespace,
+        ':package_name' => $packageName,
+        ':package_slug' => $packageSlug,
+        ':package_slug_without_prefix' => $packageSlugWithoutPrefix,
+        'Skeleton' => $className,
+        'skeleton' => $packageSlug,
+        'migration_table_name' => title_snake($packageSlug),
         'variable' => $variableName,
         ':package_description' => $description,
-        ':base_url' => $baseUrl,
-        'package_name' => $packageName,
     ]);
 
     match (true) {
@@ -201,6 +201,11 @@ foreach ($files as $file) {
         str_contains($file, 'README.md') => remove_readme_paragraphs($file),
         default => [],
     };
+}
+
+if (! $usePhpCsFixer) {
+    safeUnlink(__DIR__ . '/.php_cs.dist.php');
+    safeUnlink(__DIR__ . '/.github/workflows/php-cs-fixer.yml');
 }
 
 if (! $useUpdateChangelogWorkflow) {
