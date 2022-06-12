@@ -1,6 +1,6 @@
 <?php
 
-namespace Author\SDK\Requests;
+namespace VendorName\SDK\Requests;
 
 use Sammyjo20\Saloon\Http\RequestCollection;
 

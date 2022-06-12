@@ -1,11 +1,11 @@
 <?php
 
-namespace Author\SDK;
+namespace VendorName\SDK;
 
-use Author\SDK\Responses\SDKResponse;
+use VendorName\SDK\Responses\SDKResponse;
 use Sammyjo20\Saloon\Http\SaloonConnector;
 use Sammyjo20\Saloon\Traits\Plugins\AcceptsJson;
-use Author\SDK\Requests\ExampleRequestCollection;
+use VendorName\SDK\Requests\ExampleRequestCollection;
 
 /**
  * @method ExampleRequestCollection example

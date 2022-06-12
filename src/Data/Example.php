@@ -1,6 +1,6 @@
 <?php
 
-namespace Author\SDK\Data;
+namespace VendorName\SDK\Data;
 
 use Spatie\DataTransferObject\DataTransferObject;
 

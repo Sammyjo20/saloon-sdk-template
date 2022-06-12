@@ -2,6 +2,7 @@
     "name": ":vendor_slug/:package_slug",
     "description": ":package_description",
     "type": "library",
+    "homepage": "https://github.com/:vendor_slug/:package_slug",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -12,7 +13,7 @@
     "authors": [
         {
             "name": ":author_name",
-            "email": "author_email@example.com"
+            "email": "author@domain.com"
         }
     ],
     "minimum-stability": "stable",

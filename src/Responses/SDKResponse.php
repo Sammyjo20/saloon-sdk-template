@@ -1,9 +1,9 @@
 <?php
 
-namespace Author\SDK\Responses;
+namespace VendorName\SDK\Responses;
 
 use Sammyjo20\Saloon\Http\SaloonResponse;
-use Author\SDK\Exceptions\SDKRequestException;
+use VendorName\SDK\Exceptions\SDKRequestException;
 
 class SDKResponse extends SaloonResponse
 {

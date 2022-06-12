@@ -1,8 +1,8 @@
 <?php
 
-namespace Author\SDK\Requests\Example;
+namespace VendorName\SDK\Requests\Example;
 
-use Author\SDK\Requests\Request;
+use VendorName\SDK\Requests\Request;
 use Sammyjo20\Saloon\Constants\Saloon;
 
 class ExampleRequest extends Request

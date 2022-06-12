@@ -1,6 +1,6 @@
 <?php
 
-namespace Author\SDK\Auth;
+namespace VendorName\SDK\Auth;
 
 use Sammyjo20\Saloon\Http\SaloonRequest;
 use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;

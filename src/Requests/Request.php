@@ -1,8 +1,8 @@
 <?php
 
-namespace Author\SDK\Requests;
+namespace VendorName\SDK\Requests;
 
-use Author\SDK\SDK;
+use VendorName\SDK\SDK;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 
 class Request extends SaloonRequest

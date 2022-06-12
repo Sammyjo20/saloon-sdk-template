@@ -1,6 +1,6 @@
 <?php
 
-namespace Author\SDK\Exceptions;
+namespace VendorName\SDK\Exceptions;
 
 use Sammyjo20\Saloon\Http\SaloonResponse;
 use Sammyjo20\Saloon\Exceptions\SaloonRequestException;

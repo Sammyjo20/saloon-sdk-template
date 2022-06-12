@@ -1,6 +1,6 @@
 <?php
 
-namespace Author\SDK\Exceptions;
+namespace VendorName\SDK\Exceptions;
 
 use Exception;
 
