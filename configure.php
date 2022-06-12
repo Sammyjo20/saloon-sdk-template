@@ -183,6 +183,7 @@ $files = (str_starts_with(strtoupper(PHP_OS), 'WIN') ? replaceForWindows() : rep
 
 foreach ($files as $file) {
     replace_in_file($file, [
+        'sammyjo20/saloon-sdk-template' => $authorName . '/' . $packageSlug,
         ':author_name' => $authorName,
         'author_email@example.com' => $authorEmail,
         'SDK' => $className,
