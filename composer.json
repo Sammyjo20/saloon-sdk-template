@@ -1,12 +1,12 @@
 {
-    "name": "sammyjo20/saloon-sdk-template",
+    "name": ":vendor_slug/:package_slug",
     "description": ":package_description",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Author\\SDK\\": "src/",
-            "Author\\SDK\\Tests\\": "tests/"
+            "VendorName\\SDK\\": "src/",
+            "VendorName\\SDK\\Tests\\": "tests/"
         }
     },
     "authors": [
